@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X, ArrowUpRight, Phone, Mail, MapPin } from "lucide-react";
 import { MnzMark } from "./MnzMark";
+import logoImg from "@/assets/Untitled design-11.png";
 
 const links = [
   { label: "Work", href: "#work" },
@@ -31,14 +32,15 @@ export function SiteHeader() {
       }`}
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-4 md:px-10">
-        <Link to="/" className="flex items-center gap-3">
-          <MnzMark size={42} />
-          <div className="leading-none">
-            <div className="font-display text-base md:text-lg text-ink">MNZ</div>
-            <div className="font-italic text-[10px] md:text-[11px] text-muted-foreground -mt-0.5">
-              Your Vision Amplified
-            </div>
-          </div>
+        <Link to="/" className="flex h-10 items-center gap-3 md:h-12">
+          <img
+            src={logoImg}
+            alt="MNZ Signs & Prints"
+            className="h-full w-auto"
+            loading="eager"
+            decoding="async"
+          />
+          <span className="sr-only">MNZ Signs &amp; Prints — Your Vision Amplified</span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

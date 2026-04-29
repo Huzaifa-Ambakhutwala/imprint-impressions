@@ -12,14 +12,16 @@ const positions: Record<Corner, string> = {
 export function CornerBlocks({
   corner = "tr",
   size = 220,
+  className = "",
 }: {
   corner?: Corner;
   size?: number;
+  className?: string;
 }) {
   return (
     <div
       aria-hidden
-      className={`pointer-events-none absolute ${positions[corner]} z-0`}
+      className={`pointer-events-none absolute ${positions[corner]} z-0 ${className}`}
       style={{ width: size, height: size }}
     >
       <div className="relative h-full w-full">

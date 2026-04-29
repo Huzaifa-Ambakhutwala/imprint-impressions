@@ -9,6 +9,9 @@ import workMonument from "@/assets/work-monument.jpg";
 import workWindow from "@/assets/work-window.jpg";
 import workLed from "@/assets/work-led.jpg";
 import workBanner from "@/assets/work-banner.jpg";
+import adaImg from "@/assets/ADA.png";
+import wayfindingImg from "@/assets/Wayfinding.jpg";
+import bladeImg from "@/assets/blade.jpg.webp";
 import craftImg from "@/assets/craft.jpg";
 
 export const Route = createFileRoute("/")({
@@ -78,6 +81,27 @@ const products = [
     accent: "var(--mnz-red)",
     span: "",
   },
+  {
+    name: "ADA Signage",
+    img: adaImg,
+    desc: "Code-compliant ADA signs with braille and tactile lettering.",
+    accent: "var(--mnz-blue)",
+    span: "",
+  },
+  {
+    name: "Wayfinding",
+    img: wayfindingImg,
+    desc: "Directional systems that guide visitors with clarity and style.",
+    accent: "var(--mnz-cyan)",
+    span: "",
+  },
+  {
+    name: "Blade Signs",
+    img: bladeImg,
+    desc: "Projecting blade signs that grab attention from the sidewalk.",
+    accent: "var(--mnz-yellow)",
+    span: "",
+  },
 ];
 
 const stats = [
@@ -124,23 +148,23 @@ const process = [
 const reviews = [
   {
     quote:
-      "The reverse channel letter signage looks absolutely stunning at night. MNZ nailed the installation and lighting — it gives our brand a truly premium look.",
-    name: "Nina V.",
-    role: "Salon Owner, Boston MA",
+      "Great job, fast and affordable.",
+    name: "Abed B.",
+    role: "5-star review",
     color: "var(--mnz-red)",
   },
   {
     quote:
-      "Our retail plaza needed an updated pylon sign. MNZ designed a clean, impactful layout that gives every tenant visibility. Couldn't be happier.",
-    name: "Carlos G.",
-    role: "Leasing Agent, Sacramento CA",
+      "MNZ Signs & Prints did a fabulous job on the banner for Mom's birthday. They were wonderful to work with. We very much appreciate their time & talent.",
+    name: "Caryn & Russell B.",
+    role: "5-star review",
     color: "var(--mnz-yellow)",
   },
   {
     quote:
-      "The lobby signage MNZ installed added an instant 'wow' factor to our office. Clean lines, modern finish, excellent service.",
-    name: "David M.",
-    role: "Law Firm Partner, Denver CO",
+      "Signs look great! Very professionally done and pricing is fair. I will continue ordering from this company and I'm recommending them to everyone.",
+    name: "Sandra M.",
+    role: "5-star review",
     color: "var(--mnz-green)",
   },
   {
@@ -160,7 +184,7 @@ function Index() {
       {/* HERO */}
       <section className="relative isolate overflow-hidden pt-28 md:pt-36 pb-24 md:pb-32">
         <CornerBlocks corner="tl" size={300} />
-        <CornerBlocks corner="br" size={360} />
+        <CornerBlocks corner="br" size={360} className="bottom-10 translate-y-0" />
 
         <div className="mx-auto grid max-w-[1400px] gap-12 px-5 md:grid-cols-12 md:gap-8 md:px-10">
           <div className="relative z-10 md:col-span-7 reveal-up">
@@ -337,7 +361,7 @@ function Index() {
             backgroundSize: "64px 64px",
           }}
         />
-        <CornerBlocks corner="tr" size={320} />
+        <CornerBlocks corner="tr" size={320} className="top-28 -translate-y-0" />
 
         <div className="relative mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="text-xs uppercase tracking-[0.25em] text-bone/50">
@@ -385,12 +409,6 @@ function Index() {
                 width={1600}
                 height={1100}
               />
-            </div>
-            <div className="absolute -bottom-6 -right-6 hidden rounded-2xl bg-mnz-yellow p-5 shadow-xl md:block">
-              <div className="font-display text-3xl text-ink leading-none">15</div>
-              <div className="mt-1 text-[10px] uppercase tracking-widest text-ink/70">
-                Years in the workshop
-              </div>
             </div>
           </div>
 
