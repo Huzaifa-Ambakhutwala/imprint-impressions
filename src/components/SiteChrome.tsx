@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X, ArrowUpRight, Phone, Mail, MapPin } from "lucide-react";
 import { MnzMark } from "./MnzMark";
-import logoImg from "@/assets/Untitled design-11.png";
+import logoImg from "@/assets/mnz-logo.png";
 
 const links = [
   { label: "Work", href: "#work" },

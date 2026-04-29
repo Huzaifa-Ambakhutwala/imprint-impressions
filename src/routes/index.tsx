@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Phone, Mail, MapPin, Check, Sparkles, Clock, ShieldCheck, Wrench, Star } from "lucide-react";
+import { ArrowUpRight, Phone, Mail, Check, Sparkles, Clock, ShieldCheck, Wrench, Star } from "lucide-react";
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 import { CornerBlocks } from "@/components/CornerBlocks";
 import { MnzMark } from "@/components/MnzMark";
@@ -617,10 +617,6 @@ function Index() {
               </form>
             </div>
 
-            <div className="mt-6 flex items-start gap-3 text-sm text-bone/85">
-              <MapPin className="mt-0.5 h-4 w-4 text-bone" />
-              17505 Telge Rd, Cypress, TX 77429
-            </div>
           </div>
         </div>
       </section>
