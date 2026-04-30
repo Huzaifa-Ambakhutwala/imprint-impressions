@@ -1,6 +1,7 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import faviconPng from "@/assets/favicon.png?url";
 
 function NotFoundComponent() {
   return (
@@ -41,10 +42,10 @@ export const Route = createRootRoute({
       { rel: "stylesheet", href: appCss },
       {
         rel: "icon",
-        type: "image/svg+xml",
-        href:
-          "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='64'%20height='64'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%230b0b0f'/%3E%3Ctext%20x='50%25'%20y='54%25'%20text-anchor='middle'%20font-family='Inter,Arial'%20font-size='28'%20font-weight='800'%20fill='%23ffffff'%3EMNZ%3C/text%3E%3C/svg%3E",
+        type: "image/png",
+        href: faviconPng,
       },
+      { rel: "apple-touch-icon", href: faviconPng },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
