@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, Phone, Mail, Check, Sparkles, Clock, ShieldCheck, Wrench, Star } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 import { CornerBlocks } from "@/components/CornerBlocks";
 import { MnzMark } from "@/components/MnzMark";
@@ -177,6 +179,8 @@ const reviews = [
 ];
 
 function Index() {
+  const [isSendingEstimate, setIsSendingEstimate] = useState(false);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
@@ -551,14 +555,41 @@ function Index() {
 
               <form
                 className="mt-6 grid gap-4"
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault();
-                  const data = new FormData(e.currentTarget);
-                  const subject = encodeURIComponent("Estimate request — MNZ Signs");
-                  const body = encodeURIComponent(
-                    `Name: ${data.get("name")}\nCompany: ${data.get("company")}\nPhone: ${data.get("phone")}\nProject: ${data.get("project")}\n\n${data.get("message")}`,
-                  );
-                  window.location.href = `mailto:info@mnzsigns.com?subject=${subject}&body=${body}`;
+                  if (isSendingEstimate) return;
+
+                  const form = e.currentTarget;
+                  const data = new FormData(form);
+                  const payload = {
+                    name: data.get("name"),
+                    company: data.get("company"),
+                    contact: data.get("phone"),
+                    project: data.get("project"),
+                    message: data.get("message"),
+                    website: data.get("website"), // honeypot
+                  };
+
+                  try {
+                    setIsSendingEstimate(true);
+                    const res = await fetch("/api/estimate", {
+                      method: "POST",
+                      headers: { "content-type": "application/json" },
+                      body: JSON.stringify(payload),
+                    });
+
+                    if (!res.ok) {
+                      const err = await res.json().catch(() => null);
+                      throw new Error(err?.error ?? "Failed to send request");
+                    }
+
+                    toast.success("Request sent! We’ll reply within 1 business day.");
+                    form.reset();
+                  } catch (err) {
+                    toast.error(err instanceof Error ? err.message : "Failed to send request");
+                  } finally {
+                    setIsSendingEstimate(false);
+                  }
                 }}
               >
                 <div className="grid grid-cols-2 gap-3">
@@ -579,6 +610,13 @@ function Index() {
                   required
                   placeholder="Phone or email"
                   className="rounded-xl border border-border bg-bone px-4 py-3 text-sm outline-none focus:border-ink"
+                />
+                <input
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  className="hidden"
+                  aria-hidden="true"
                 />
                 <select
                   name="project"
@@ -602,9 +640,10 @@ function Index() {
                 />
                 <button
                   type="submit"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-bone transition-colors hover:bg-mnz-red"
+                  disabled={isSendingEstimate}
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-bone transition-colors hover:bg-mnz-red disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  Send request
+                  {isSendingEstimate ? "Sending…" : "Send request"}
                   <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
                 </button>
 
