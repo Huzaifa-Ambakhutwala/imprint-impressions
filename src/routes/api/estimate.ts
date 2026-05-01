@@ -1,8 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Resend } from "resend";
+import { gmailSendTextEmail } from "@/lib/gmail";
 
 function getEnv(name: string) {
   return process.env[name] ?? process.env[name.toLowerCase()];
+}
+
+function looksLikeEmail(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
 function json(status: number, body: unknown) {
@@ -16,9 +20,6 @@ export const Route = createFileRoute("/api/estimate")({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        const apiKey = getEnv("RESEND_API_KEY") ?? getEnv("resend_api_key");
-        if (!apiKey) return json(500, { ok: false, error: "Missing RESEND_API_KEY" });
-
         let payload: any;
         try {
           payload = await request.json();
@@ -38,8 +39,8 @@ export const Route = createFileRoute("/api/estimate")({
         if (!contact) return json(400, { ok: false, error: "Phone or email is required" });
         if (!message) return json(400, { ok: false, error: "Message is required" });
 
-        const to = getEnv("ESTIMATE_TO_EMAIL") ?? "info@mnzsigns.com";
-        const from = getEnv("RESEND_FROM") ?? "MNZ Signs <onboarding@resend.dev>";
+        const to = getEnv("ESTIMATE_TO_EMAIL") ?? "mnsignsnprints@gmail.com";
+        const from = getEnv("GMAIL_FROM") ?? "mnzsignsnprints@gmail.com";
 
         const subject = `Estimate request — ${name}${company ? ` (${company})` : ""}`;
         const text = [
@@ -53,17 +54,39 @@ export const Route = createFileRoute("/api/estimate")({
           .filter(Boolean)
           .join("\n");
 
-        const resend = new Resend(apiKey);
-        const result = await resend.emails.send({
+        const replyTo = looksLikeEmail(contact) ? contact : undefined;
+
+        await gmailSendTextEmail({
           from,
           to,
           subject,
-          replyTo: contact.includes("@") ? contact : undefined,
           text,
+          replyTo,
         });
 
-        if ((result as any)?.error) {
-          return json(502, { ok: false, error: (result as any).error });
+        // Optional auto-reply: only if the contact is an email address.
+        if (replyTo) {
+          const ackSubject = "We received your request — MNZ Signs & Prints";
+          const ackText = [
+            `Hi ${name},`,
+            "",
+            "Thanks for reaching out! We received your estimate request and will reply within 1 business day.",
+            "",
+            "Summary:",
+            company ? `- Company: ${company}` : null,
+            project ? `- Project: ${project}` : null,
+            "",
+            "— MNZ Signs & Prints",
+          ]
+            .filter(Boolean)
+            .join("\n");
+
+          await gmailSendTextEmail({
+            from,
+            to: replyTo,
+            subject: ackSubject,
+            text: ackText,
+          });
         }
 
         return json(200, { ok: true });

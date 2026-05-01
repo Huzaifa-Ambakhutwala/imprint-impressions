@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiEstimateRouteImport } from './routes/api/estimate'
+import { Route as ApiGmailConnectRouteImport } from './routes/api/gmail/connect'
+import { Route as ApiGmailCallbackRouteImport } from './routes/api/gmail/callback'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +24,58 @@ const ApiEstimateRoute = ApiEstimateRouteImport.update({
   path: '/api/estimate',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiGmailConnectRoute = ApiGmailConnectRouteImport.update({
+  id: '/api/gmail/connect',
+  path: '/api/gmail/connect',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiGmailCallbackRoute = ApiGmailCallbackRouteImport.update({
+  id: '/api/gmail/callback',
+  path: '/api/gmail/callback',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/api/estimate': typeof ApiEstimateRoute
+  '/api/gmail/callback': typeof ApiGmailCallbackRoute
+  '/api/gmail/connect': typeof ApiGmailConnectRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/api/estimate': typeof ApiEstimateRoute
+  '/api/gmail/callback': typeof ApiGmailCallbackRoute
+  '/api/gmail/connect': typeof ApiGmailConnectRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/api/estimate': typeof ApiEstimateRoute
+  '/api/gmail/callback': typeof ApiGmailCallbackRoute
+  '/api/gmail/connect': typeof ApiGmailConnectRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/estimate'
+  fullPaths:
+    | '/'
+    | '/api/estimate'
+    | '/api/gmail/callback'
+    | '/api/gmail/connect'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/estimate'
-  id: '__root__' | '/' | '/api/estimate'
+  to: '/' | '/api/estimate' | '/api/gmail/callback' | '/api/gmail/connect'
+  id:
+    | '__root__'
+    | '/'
+    | '/api/estimate'
+    | '/api/gmail/callback'
+    | '/api/gmail/connect'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApiEstimateRoute: typeof ApiEstimateRoute
+  ApiGmailCallbackRoute: typeof ApiGmailCallbackRoute
+  ApiGmailConnectRoute: typeof ApiGmailConnectRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +94,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiEstimateRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/gmail/connect': {
+      id: '/api/gmail/connect'
+      path: '/api/gmail/connect'
+      fullPath: '/api/gmail/connect'
+      preLoaderRoute: typeof ApiGmailConnectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/gmail/callback': {
+      id: '/api/gmail/callback'
+      path: '/api/gmail/callback'
+      fullPath: '/api/gmail/callback'
+      preLoaderRoute: typeof ApiGmailCallbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApiEstimateRoute: ApiEstimateRoute,
+  ApiGmailCallbackRoute: ApiGmailCallbackRoute,
+  ApiGmailConnectRoute: ApiGmailConnectRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
