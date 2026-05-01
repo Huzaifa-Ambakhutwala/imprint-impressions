@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 import { CornerBlocks } from "@/components/CornerBlocks";
 import { MnzMark } from "@/components/MnzMark";
+import logoImg from "@/assets/mnz-logo.png";
 import heroImg from "@/assets/hero-channel-letters.jpg";
 import workPylon from "@/assets/work-pylon.jpg";
 import workMonument from "@/assets/work-monument.jpg";
@@ -190,6 +191,16 @@ function Index() {
         <CornerBlocks corner="tl" size={300} />
         <CornerBlocks corner="br" size={360} className="bottom-10 translate-y-0" />
 
+        <div className="relative z-10 mx-auto -mt-10 mb-10 flex max-w-[1400px] justify-center px-5 md:-mt-14 md:mb-14 md:px-10">
+          <img
+            src={logoImg}
+            alt="MNZ Signs & Prints"
+            className="h-24 w-auto md:h-32 lg:h-36"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+
         <div className="mx-auto grid max-w-[1400px] gap-12 px-5 md:grid-cols-12 md:gap-8 md:px-10">
           <div className="relative z-10 md:col-span-7 reveal-up">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1.5 text-xs font-medium text-ink/70 backdrop-blur">
@@ -260,10 +271,6 @@ function Index() {
               </div>
             </div>
 
-            {/* Floating mark */}
-            <div className="absolute -left-8 -top-8 hidden md:block">
-              <MnzMark size={96} className="drop-shadow-xl" />
-            </div>
           </div>
         </div>
 

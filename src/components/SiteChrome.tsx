@@ -36,9 +36,12 @@ export function SiteHeader() {
           <img
             src={logoImg}
             alt="MNZ Signs & Prints"
-            className="h-full w-auto"
+            className={`h-full w-auto transition-opacity duration-300 ${
+              scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
             loading="eager"
             decoding="async"
+            aria-hidden={!scrolled}
           />
           <span className="sr-only">MNZ Signs &amp; Prints — Your Vision Amplified</span>
         </Link>
