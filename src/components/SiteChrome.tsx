@@ -154,11 +154,7 @@ export function SiteFooter() {
             </li>
             <li className="flex items-start gap-3">
               <Mail className="mt-0.5 h-4 w-4 text-mnz-yellow" />
-              <a href="mailto:info@mnzsigns.com" className="hover:text-mnz-yellow">info@mnzsigns.com</a>
-            </li>
-            <li className="flex items-start gap-3">
-              <MapPin className="mt-0.5 h-4 w-4 text-mnz-yellow" />
-              17505 Telge Rd, Cypress, TX 77429
+              <a href="mailto:mnzsignsnprints@gmail.com" className="hover:text-mnz-yellow">mnzsignsnprints@gmail.com</a>
             </li>
           </ul>
         </div>
@@ -167,7 +163,7 @@ export function SiteFooter() {
       <div className="border-t border-bone/10">
         <div className="mx-auto flex max-w-[1400px] flex-col items-start justify-between gap-2 px-5 py-6 text-xs text-bone/55 md:flex-row md:items-center md:px-10">
           <div>© {new Date().getFullYear()} MNZ Signs &amp; Prints. All rights reserved.</div>
-          <div>15 Years of Excellence · 5-Year Warranty · Made in Cypress, TX</div>
+          <div>10 Years of Excellence · 5-Year Warranty · Made local in TEXAS</div>
         </div>
       </div>
 

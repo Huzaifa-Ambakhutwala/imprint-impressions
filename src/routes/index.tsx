@@ -197,7 +197,7 @@ function Index() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-mnz-green opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-mnz-green" />
               </span>
-              Now booking installs · Cypress, TX &amp; nationwide
+              Now booking installs · TEXAS &amp; nationwide
             </div>
 
             <h1 className="mt-6 font-display text-[14vw] leading-[0.85] text-ink md:text-[7.5rem] lg:text-[9rem]">
@@ -534,11 +534,11 @@ function Index() {
                 +1 (346) 837 6523
               </a>
               <a
-                href="mailto:info@mnzsigns.com"
+                href="mailto:mnzsignsnprints@gmail.com"
                 className="group inline-flex items-center gap-3 rounded-full border border-bone/30 bg-transparent px-7 py-4 text-sm font-semibold text-bone transition-colors hover:bg-bone hover:text-mnz-red"
               >
                 <Mail className="h-4 w-4" />
-                info@mnzsigns.com
+                mnzsignsnprints@gmail.com
               </a>
             </div>
           </div>
