@@ -110,7 +110,7 @@ const products = [
 const stats = [
   { n: "5+", l: "Years of Craft" },
   { n: "5yr", l: "Warranty on Parts & Labor" },
-  { n: "1k+", l: "Signs Installed" },
+  { n: "500+", l: "Signs Installed" },
   { n: "100%", l: "In-House Manufacturing" },
 ];
 
