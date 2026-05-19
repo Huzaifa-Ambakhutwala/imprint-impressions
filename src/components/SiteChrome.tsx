@@ -23,10 +23,17 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
+        scrolled || open
           ? "bg-background/85 backdrop-blur-xl border-b border-border"
           : "bg-transparent"
       }`}
@@ -78,8 +85,8 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-border bg-background">
-          <div className="flex flex-col p-5 gap-1">
+        <div className="md:hidden max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-border bg-background">
+          <div className="flex flex-col gap-1 p-5">
             {links.map((l) => (
               <a
                 key={l.href}
@@ -164,9 +171,9 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-bone/10">
-        <div className="mx-auto flex max-w-[1400px] flex-col items-start justify-between gap-2 px-5 py-6 text-xs text-bone/55 md:flex-row md:items-center md:px-10">
+        <div className="mx-auto flex max-w-[1400px] flex-col items-start justify-between gap-3 px-5 py-6 text-center text-xs text-bone/55 md:flex-row md:items-center md:gap-2 md:text-left md:px-10">
           <div>© {new Date().getFullYear()} MNZ Signs &amp; Prints. All rights reserved.</div>
-          <div>10 Years of Excellence · 5-Year Warranty · Made local in TEXAS</div>
+          <div>5+ Years of Excellence · 5-Year Warranty · Made local in TEXAS</div>
         </div>
       </div>
 

@@ -30,7 +30,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Custom signage that makes your brand unforgettable. Channel letters, pylons, monuments, LED & more. 15 years of craft. 5-year warranty.",
+          "Custom signage that makes your brand unforgettable. Channel letters, pylons, monuments, LED & more. 5+ years of craft. 5-year warranty.",
       },
       { property: "og:type", content: "website" },
       { property: "og:image", content: "/og-image.jpg" },
@@ -108,7 +108,7 @@ const products = [
 ];
 
 const stats = [
-  { n: "15+", l: "Years of Craft" },
+  { n: "5+", l: "Years of Craft" },
   { n: "5yr", l: "Warranty on Parts & Labor" },
   { n: "1k+", l: "Signs Installed" },
   { n: "100%", l: "In-House Manufacturing" },
@@ -183,13 +183,13 @@ function Index() {
   const [isSendingEstimate, setIsSendingEstimate] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <SiteHeader />
 
       {/* HERO */}
-      <section className="relative isolate overflow-hidden pt-28 md:pt-36 pb-24 md:pb-32">
-        <CornerBlocks corner="tl" size={300} />
-        <CornerBlocks corner="br" size={360} className="bottom-10 translate-y-0" />
+      <section className="relative isolate overflow-hidden pt-24 pb-20 sm:pt-28 md:pt-36 md:pb-32">
+        <CornerBlocks corner="tl" size={300} className="scale-[0.55] sm:scale-75 md:scale-100" />
+        <CornerBlocks corner="br" size={360} className="bottom-10 translate-y-0 scale-[0.55] sm:scale-75 md:scale-100" />
 
         <div className="relative z-10 mx-auto -mt-10 mb-10 flex max-w-[1400px] justify-center px-5 md:-mt-14 md:mb-14 md:px-10">
           <img
@@ -211,7 +211,7 @@ function Index() {
               Now booking installs · TEXAS &amp; nationwide
             </div>
 
-            <h1 className="mt-6 font-display text-[14vw] leading-[0.85] text-ink md:text-[7.5rem] lg:text-[9rem]">
+            <h1 className="mt-6 font-display text-[13vw] leading-[0.85] text-ink sm:text-[11vw] md:text-[7.5rem] lg:text-[9rem]">
               SIGNS<br />
               THAT <span className="text-mnz-red">SHOUT</span>
               <span className="font-italic font-normal text-ink/80">.</span>
@@ -219,26 +219,26 @@ function Index() {
 
             <p className="mt-6 max-w-xl text-lg text-ink/70 text-balance">
               We design, fabricate and install storefront signage, monuments, pylons,
-              LED displays and large-format prints. In-house craftsmanship since 2010.
+              LED displays and large-format prints. In-house craftsmanship for 5+ years.
             </p>
 
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
               <a
                 href="#contact"
-                className="group inline-flex items-center gap-2 rounded-full bg-ink px-7 py-4 text-sm font-semibold text-bone transition-all hover:bg-mnz-red"
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-7 py-4 text-sm font-semibold text-bone transition-all hover:bg-mnz-red sm:w-auto"
               >
                 Get a Free Estimate
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
               </a>
               <a
                 href="#work"
-                className="inline-flex items-center gap-2 rounded-full border border-ink/20 bg-transparent px-7 py-4 text-sm font-semibold text-ink transition-colors hover:bg-ink hover:text-bone"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-ink/20 bg-transparent px-7 py-4 text-sm font-semibold text-ink transition-colors hover:bg-ink hover:text-bone sm:w-auto"
               >
                 See our work
               </a>
             </div>
 
-            <div className="mt-12 grid max-w-lg grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-4">
+            <div className="mt-12 grid max-w-lg grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-4 sm:gap-x-8">
               {stats.map((s) => (
                 <div key={s.l}>
                   <div className="font-display text-2xl text-ink">{s.n}</div>
@@ -260,7 +260,7 @@ function Index() {
                 height={1080}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-transparent" />
-              <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+              <div className="absolute bottom-5 left-5 right-5 flex flex-col items-start gap-3 sm:flex-row sm:items-end sm:justify-between">
                 <div className="rounded-2xl bg-bone/95 px-4 py-3 backdrop-blur">
                   <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Featured</div>
                   <div className="font-display text-sm">Channel Letters · Houston, TX</div>
@@ -318,7 +318,7 @@ function Index() {
               <div className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
                 / Selected Work
               </div>
-              <h2 className="mt-3 font-display text-5xl leading-[0.9] text-ink md:text-7xl">
+              <h2 className="mt-3 font-display text-4xl leading-[0.9] text-ink sm:text-5xl md:text-7xl">
                 Built to be <span className="text-mnz-blue">unmissable</span>.
               </h2>
             </div>
@@ -328,11 +328,11 @@ function Index() {
             </p>
           </div>
 
-          <div className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-4 md:auto-rows-[260px]">
+          <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 md:auto-rows-[260px]">
             {products.map((p, i) => (
               <article
                 key={p.name}
-                className={`group relative overflow-hidden rounded-3xl bg-card shadow-lg transition-all hover:shadow-2xl ${p.span}`}
+                className={`group relative min-h-[260px] overflow-hidden rounded-3xl bg-card shadow-lg transition-all hover:shadow-2xl sm:min-h-[280px] ${p.span}`}
               >
                 <img
                   src={p.img}
@@ -372,13 +372,13 @@ function Index() {
             backgroundSize: "64px 64px",
           }}
         />
-        <CornerBlocks corner="tr" size={320} className="top-28 -translate-y-0" />
+        <CornerBlocks corner="tr" size={320} className="top-28 -translate-y-0 scale-[0.55] sm:scale-75 md:scale-100" />
 
         <div className="relative mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="text-xs uppercase tracking-[0.25em] text-bone/50">
             / Why MNZ
           </div>
-          <h2 className="mt-3 max-w-3xl font-display text-5xl leading-[0.9] md:text-7xl">
+          <h2 className="mt-3 max-w-3xl font-display text-4xl leading-[0.9] sm:text-5xl md:text-7xl">
             Craft you can <span className="text-mnz-yellow">trust</span>,
             built to <span className="font-italic font-normal">last</span>.
           </h2>
@@ -427,7 +427,7 @@ function Index() {
             <div className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
               / The Process
             </div>
-            <h2 className="mt-3 font-display text-5xl leading-[0.9] text-ink md:text-6xl">
+            <h2 className="mt-3 font-display text-4xl leading-[0.9] text-ink sm:text-5xl md:text-6xl">
               From sketch to <span className="text-mnz-red">switch-on</span>.
             </h2>
             <p className="mt-5 max-w-lg text-base text-ink/70">
@@ -439,7 +439,7 @@ function Index() {
               {process.map((p) => (
                 <li
                   key={p.step}
-                  className="group grid grid-cols-[auto_1fr_auto] items-center gap-6 border-t border-border py-6 transition-colors hover:bg-muted/40"
+                  className="group grid grid-cols-[auto_1fr] items-start gap-4 border-t border-border py-5 transition-colors hover:bg-muted/40 md:grid-cols-[auto_1fr_auto] md:items-center md:gap-6 md:py-6"
                 >
                   <div className="font-display text-2xl text-ink/30 group-hover:text-mnz-red transition-colors">
                     {p.step}
@@ -448,7 +448,7 @@ function Index() {
                     <div className="font-display text-2xl text-ink">{p.title}</div>
                     <div className="mt-1 text-sm text-ink/60">{p.body}</div>
                   </div>
-                  <ArrowUpRight className="h-5 w-5 text-ink/30 transition-all group-hover:rotate-45 group-hover:text-ink" />
+                  <ArrowUpRight className="hidden h-5 w-5 text-ink/30 transition-all group-hover:rotate-45 group-hover:text-ink md:block" />
                 </li>
               ))}
               <li className="border-t border-border" />
@@ -465,20 +465,20 @@ function Index() {
               <div className="text-xs uppercase tracking-[0.25em] text-muted-foreground">
                 / Real People, Real Reviews
               </div>
-              <h2 className="mt-3 font-display text-5xl leading-[0.9] text-ink md:text-7xl">
+              <h2 className="mt-3 font-display text-4xl leading-[0.9] text-ink sm:text-5xl md:text-7xl">
                 Loved by the <span className="text-mnz-green">brands</span>
                 <br />we light up.
               </h2>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star key={i} className="h-5 w-5 fill-mnz-yellow text-mnz-yellow" />
               ))}
-              <span className="ml-2 text-sm font-medium text-ink/70">4.9/5 · Google verified</span>
+              <span className="text-sm font-medium text-ink/70">4.9/5 · Google verified</span>
             </div>
           </div>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {reviews.map((r, i) => (
               <figure
                 key={i}
@@ -523,7 +523,7 @@ function Index() {
             <div className="text-xs uppercase tracking-[0.25em] text-bone/70">
               / Ready when you are
             </div>
-            <h2 className="mt-3 font-display text-6xl leading-[0.85] md:text-[8rem]">
+            <h2 className="mt-3 font-display text-4xl leading-[0.85] sm:text-5xl md:text-6xl lg:text-[8rem]">
               Let's amplify
               <br />
               your <span className="font-italic font-normal">vision</span>.
@@ -532,20 +532,20 @@ function Index() {
               Free estimate. Honest timelines. A sign that earns every glance.
             </p>
 
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
               <a
                 href="tel:+13468376523"
-                className="group inline-flex items-center gap-3 rounded-full bg-ink px-7 py-4 text-sm font-semibold text-bone transition-transform hover:-translate-y-0.5"
+                className="group inline-flex w-full items-center justify-center gap-3 rounded-full bg-ink px-6 py-4 text-sm font-semibold text-bone transition-transform hover:-translate-y-0.5 sm:w-auto sm:justify-start sm:px-7"
               >
-                <Phone className="h-4 w-4" />
+                <Phone className="h-4 w-4 shrink-0" />
                 +1 (346) 837 6523
               </a>
               <a
                 href="mailto:mnzsignsnprints@gmail.com"
-                className="group inline-flex items-center gap-3 rounded-full border border-bone/30 bg-transparent px-7 py-4 text-sm font-semibold text-bone transition-colors hover:bg-bone hover:text-mnz-red"
+                className="group inline-flex w-full items-center justify-center gap-3 rounded-full border border-bone/30 bg-transparent px-6 py-4 text-sm font-semibold text-bone transition-colors hover:bg-bone hover:text-mnz-red sm:w-auto sm:justify-start sm:px-7"
               >
-                <Mail className="h-4 w-4" />
-                mnzsignsnprints@gmail.com
+                <Mail className="h-4 w-4 shrink-0" />
+                <span className="break-all sm:break-normal">mnzsignsnprints@gmail.com</span>
               </a>
             </div>
           </div>
@@ -599,7 +599,7 @@ function Index() {
                   }
                 }}
               >
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <input
                     name="name"
                     required
@@ -654,7 +654,7 @@ function Index() {
                   <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
                 </button>
 
-                <ul className="mt-2 grid grid-cols-2 gap-2 text-xs text-ink/70">
+                <ul className="mt-2 grid grid-cols-1 gap-2 text-xs text-ink/70 sm:grid-cols-2">
                   <li className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-mnz-green" /> Free estimate</li>
                   <li className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-mnz-green" /> 5-yr warranty</li>
                   <li className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-mnz-green" /> In-house design</li>
