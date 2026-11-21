@@ -1,7 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, Phone, Mail, Check, Sparkles, Clock, ShieldCheck, Wrench, Star } from "lucide-react";
-import { useState } from "react";
-import { toast } from "sonner";
 import { SiteHeader, SiteFooter } from "@/components/SiteChrome";
 import { CornerBlocks } from "@/components/CornerBlocks";
 import { MnzMark } from "@/components/MnzMark";
@@ -180,8 +178,6 @@ const reviews = [
 ];
 
 function Index() {
-  const [isSendingEstimate, setIsSendingEstimate] = useState(false);
-
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <SiteHeader />
@@ -555,104 +551,38 @@ function Index() {
               <div className="flex items-center gap-3">
                 <MnzMark size={42} />
                 <div>
-                  <div className="font-display text-base">Request a free estimate</div>
-                  <div className="text-xs text-muted-foreground">We respond within 1 business day.</div>
+                  <div className="font-display text-base">Get a free estimate</div>
+                  <div className="text-xs text-muted-foreground">Call or email us — we respond within 1 business day.</div>
                 </div>
               </div>
 
-              <form
-                className="mt-6 grid gap-4"
-                onSubmit={async (e) => {
-                  e.preventDefault();
-                  if (isSendingEstimate) return;
-
-                  const form = e.currentTarget;
-                  const data = new FormData(form);
-                  const payload = {
-                    name: data.get("name"),
-                    company: data.get("company"),
-                    contact: data.get("phone"),
-                    project: data.get("project"),
-                    message: data.get("message"),
-                    website: data.get("website"), // honeypot
-                  };
-
-                  try {
-                    setIsSendingEstimate(true);
-                    const res = await fetch("/api/estimate", {
-                      method: "POST",
-                      headers: { "content-type": "application/json" },
-                      body: JSON.stringify(payload),
-                    });
-
-                    if (!res.ok) {
-                      const err = await res.json().catch(() => null);
-                      throw new Error(err?.error ?? "Failed to send request");
-                    }
-
-                    toast.success("Request sent! We’ll reply within 1 business day.");
-                    form.reset();
-                  } catch (err) {
-                    toast.error(err instanceof Error ? err.message : "Failed to send request");
-                  } finally {
-                    setIsSendingEstimate(false);
-                  }
-                }}
-              >
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                  <input
-                    name="name"
-                    required
-                    placeholder="Your name"
-                    className="rounded-xl border border-border bg-bone px-4 py-3 text-sm outline-none focus:border-ink"
-                  />
-                  <input
-                    name="company"
-                    placeholder="Company"
-                    className="rounded-xl border border-border bg-bone px-4 py-3 text-sm outline-none focus:border-ink"
-                  />
-                </div>
-                <input
-                  name="phone"
-                  required
-                  placeholder="Phone or email"
-                  className="rounded-xl border border-border bg-bone px-4 py-3 text-sm outline-none focus:border-ink"
-                />
-                <input
-                  name="website"
-                  tabIndex={-1}
-                  autoComplete="off"
-                  className="hidden"
-                  aria-hidden="true"
-                />
-                <select
-                  name="project"
-                  className="rounded-xl border border-border bg-bone px-4 py-3 text-sm outline-none focus:border-ink"
-                  defaultValue=""
+              <div className="mt-6 grid gap-3">
+                <a
+                  href="tel:+13468376523"
+                  className="group flex items-center gap-4 rounded-2xl border border-border px-5 py-4 transition-colors hover:border-ink"
                 >
-                  <option value="" disabled>Project type…</option>
-                  <option>Channel Letters</option>
-                  <option>Pylon Sign</option>
-                  <option>Monument Sign</option>
-                  <option>Window Graphics</option>
-                  <option>LED Display</option>
-                  <option>Banner / Print</option>
-                  <option>Other</option>
-                </select>
-                <textarea
-                  name="message"
-                  rows={4}
-                  placeholder="Tell us about your project…"
-                  className="rounded-xl border border-border bg-bone px-4 py-3 text-sm outline-none focus:border-ink"
-                />
-                <button
-                  type="submit"
-                  disabled={isSendingEstimate}
-                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-bone transition-colors hover:bg-mnz-red disabled:cursor-not-allowed disabled:opacity-60"
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-ink text-bone">
+                    <Phone className="h-4 w-4" />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-xs uppercase tracking-[0.2em] text-ink/60">Call us</span>
+                    <span className="block font-semibold">+1 (346) 837 6523</span>
+                  </span>
+                  <ArrowUpRight className="ml-auto h-4 w-4 shrink-0 transition-transform group-hover:rotate-45" />
+                </a>
+                <a
+                  href="mailto:mnzsignsnprints@gmail.com"
+                  className="group flex items-center gap-4 rounded-2xl border border-border px-5 py-4 transition-colors hover:border-ink"
                 >
-                  {isSendingEstimate ? "Sending…" : "Send request"}
-                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
-                </button>
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-mnz-red text-bone">
+                    <Mail className="h-4 w-4" />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-xs uppercase tracking-[0.2em] text-ink/60">Email us</span>
+                    <span className="block break-all font-semibold sm:break-normal">mnzsignsnprints@gmail.com</span>
+                  </span>
+                  <ArrowUpRight className="ml-auto h-4 w-4 shrink-0 transition-transform group-hover:rotate-45" />
+                </a>
 
                 <ul className="mt-2 grid grid-cols-1 gap-2 text-xs text-ink/70 sm:grid-cols-2">
                   <li className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-mnz-green" /> Free estimate</li>
@@ -660,7 +590,7 @@ function Index() {
                   <li className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-mnz-green" /> In-house design</li>
                   <li className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-mnz-green" /> UL-listed</li>
                 </ul>
-              </form>
+              </div>
             </div>
 
           </div>
