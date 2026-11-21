@@ -42,7 +42,7 @@ function toRequest(req: IncomingMessage, body?: Buffer) {
 
   const method = (req.method ?? "GET").toUpperCase();
   const init: RequestInit = { method, headers };
-  if (!["GET", "HEAD"].includes(method) && body) init.body = body;
+  if (!["GET", "HEAD"].includes(method) && body) init.body = new Uint8Array(body);
 
   return new Request(url, init);
 }
